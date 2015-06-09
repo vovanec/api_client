@@ -26,11 +26,33 @@
 
 var RSVP = require('rsvp'),
     request = require('request'),
-    _ = require('underscore'),
+    util = require('util'),
     _request = RSVP.denodeify(request);
 
 
 const TRAILING_SLASH = /\/*$/;
+
+
+/** HTTP method constants
+ *
+ * @type {string}
+ */
+const GET     = exports.GET     = 'GET';
+const POST    = exports.POST    = 'POST';
+const PUT     = exports.PUT     = 'PUT';
+const PATCH   = exports.PATCH   = 'PATCH';
+const DELETE  = exports.DELETE  = 'DELETE';
+const HEAD    = exports.HEAD    = 'HEAD';
+const OPTIONS = exports.OPTIONS = 'OPTIONS';
+
+/**
+ * API client usage error.
+ */
+function APIClientUsageError(message) {
+    this.message = message;
+}
+
+util.inherits(APIClientUsageError, Error);
 
 
 /**
@@ -41,11 +63,12 @@ const TRAILING_SLASH = /\/*$/;
  */
 exports.createAPIPClient = function(clientOptions) {
 
-    if (clientOptions.hasOwnProperty('baseURL') && !_.isUndefined(clientOptions.baseURL)) {
-        var baseURL = clientOptions.baseURL.replace(TRAILING_SLASH, '');
+    var baseURL = clientOptions.baseURL;
+    if (!util.isUndefined(baseURL)) {
+        baseURL = baseURL.replace(TRAILING_SLASH, '');
         delete clientOptions.baseURL;
     } else {
-        throw new Error('There is no required `baseURL` property in client clientOptions.');
+        throw new APIClientUsageError('There is no required `baseURL` property in client clientOptions.');
     }
 
     function _makeRequestOptions(requestOptions) {
@@ -58,7 +81,7 @@ exports.createAPIPClient = function(clientOptions) {
         }
 
         mergedOptions.url = baseURL + requestOptions.uri;
-        mergedOptions.method = requestOptions.method || 'GET';
+        mergedOptions.method = requestOptions.method || GET;
         mergedOptions.headers = requestOptions.headers;
         mergedOptions.body = requestOptions.body;
 

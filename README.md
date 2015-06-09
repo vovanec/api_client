@@ -3,7 +3,6 @@ Wrapper over `request` module to build simple Web API clients.
 Example:
 
 ```javascript
-(function () {
 
     var api_client = require('./api_client'),
         clientOpts = {
@@ -19,9 +18,6 @@ Example:
             console.log('Request finished with error: ' + error);
         }
     );
-
-}());
-
 ```
 
 
