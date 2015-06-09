@@ -1,0 +1,31 @@
+{
+  "name": "api_client",
+  "version": "0.0.1",
+  "description": "Simple wrapper over request module to build simple Web API clients",
+  "main": "api_client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vovanec/api_client.git"
+  },
+  "keywords": [
+    "http",
+    "client",
+    "request",
+    "web",
+    "api"
+  ],
+  "dependencies": {
+    "underscore": "*",
+    "request": "*",
+    "rsvp": "*"
+  },
+  "author": "Volodymyr Kuznetsov <vovanec@gmail.com> (https://github.com/vovanec)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vovanec/api_client/issues"
+  },
+  "homepage": "https://github.com/vovanec/api_client"
+}
