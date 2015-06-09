@@ -19,7 +19,8 @@
   ],
   "dependencies": {
     "request": "*",
-    "rsvp": "*"
+    "rsvp": "*",
+    "util": "*"
   },
   "author": "Volodymyr Kuznetsov <vovanec@gmail.com> (https://github.com/vovanec)",
   "license": "ISC",
